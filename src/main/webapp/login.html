@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+	function validate() {
+		var uname = document.getElementById("username").value;
+		var pwd = document.getElementById("password").value;
+		if (uname.length == 0) {
+			alert("Please enter username")
+			return false;
+		} else if (pwd.length == 0) {
+			alert("Please enter password")
+			return false;
+		}
+		else if (pwd.length < 6 || pwd.length > 12) {
+			alert("Password length must be between 6-12")
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>Login Page</h1>
+	<hr />
+	<h2 class="notes">HHello and welcome to Login page</h2>
+	<form class="form-style" action="SignInController"
+	 onsubmit="return validate()"
+	 method="post">
+		<table>
+			<tr>
+				<td><label> Username: </label></td>
+				<td><input type="text" size="31" name="username" id="username" placeholder="please enter username"></td>
+			</tr>
+			<tr>
+				<td><label> Password: </label></td>
+				<td><input type="password" name="password" id="password">
+					<input type="submit" value="Sign in"> 
+					</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
