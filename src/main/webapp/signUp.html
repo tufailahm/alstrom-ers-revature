@@ -36,7 +36,12 @@
 		} else if (pwd != confirmpwd) {
 			alert("Password and confirm password does not match");
 			return false;
-		} else if (radio[0] == 0 && radio[1] == 0 && radio[2] == 0) {
+		}
+		else if (pwd.length < 6 || pwd.length > 12) {
+			alert("Password length must be between 6-12")
+			return false;
+		}
+		else if (radio[0] == 0 && radio[1] == 0 && radio[2] == 0) {
 			alert("Please select a gender");
 			return false;
 		} else if (!checked1 && !checked2 && !checked3) {

@@ -1,9 +1,8 @@
 package com.training.pms.dao;
 
 import java.sql.*;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.training.ers.model.User;
 import com.training.pms.utility.DBConnection;
@@ -52,6 +51,58 @@ public class LoginDAOImpl implements LoginDAO {
 			e.printStackTrace();
 		}
 		return userValid;
+	}
+
+	@Override
+	public List<User> getUsers() {
+		System.out.println("##Printing all users  ");
+		List<User> users = new ArrayList<User>();
+
+		Statement stat;
+		try {
+			stat = connection.createStatement();
+			ResultSet res = stat.executeQuery("select * from users");
+			while (res.next()) {
+				User user = new User();
+				user.setUserId(res.getInt(1));
+				user.setUsername(res.getString(2));
+				user.setPassword(res.getString(3));
+				user.setGender(res.getString(4));
+				user.setNotifications(res.getString(5));
+				user.setQualification(res.getString(6));
+				users.add(user);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	@Override
+	public List<User> getUsersByUserName(String username) {
+		System.out.println("##Printing search users  ");
+		List<User> users = new ArrayList<User>();
+
+		Statement stat;
+		try {
+			stat = connection.createStatement();
+			ResultSet res = stat.executeQuery("select * from users where username = '"+username+"'");
+			while (res.next()) {
+				User user = new User();
+				user.setUserId(res.getInt(1));
+				user.setUsername(res.getString(2));
+				user.setPassword(res.getString(3));
+				user.setGender(res.getString(4));
+				user.setNotifications(res.getString(5));
+				user.setQualification(res.getString(6));
+				users.add(user);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 
 }
